@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="../css/auth.css">
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-  
+
   <title>HiCare Tracker | sign up</title>
 
 </head>
@@ -24,7 +24,8 @@
         </div>
 
         <div class="content--body">
-          <form>
+          <form id="signup">
+            <p id="message"></p>
             <div class="form--item">
               <input type="email" name="email" id="email" placeholder="Enter your email">
             </div>
@@ -38,7 +39,7 @@
             </div>
 
             <div class="form--item">
-              <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirm password">
+              <input type="password" name="confirm-password" id="confirm_password" placeholder="Confirm password">
             </div>
 
             <div>
@@ -59,12 +60,49 @@
       </div>
       <!-- end of #sign-up-->
     </div>
-    <!-- end of .content-->
-  </div>
-  <!-- end of .main-->
-
+    <!-- end of .main-->
   </div>
   <!-- end of class container-->
+
+  <script>
+    document.getElementById("signup").addEventListener("submit", function () {
+      // let data = {
+      //   email: document.getElementById("email").value,
+      //   username: document.getElementById("username").value,
+      //   password: document.getElementById("password").value,
+      //   confirm_password: document.getElementById("confirm_password").value
+      // };
+
+      let email = document.getElementById("email").value
+      console.log(email);
+      let username = document.getElementById("username").value
+      console.log(username);
+      let password = document.getElementById("password").value
+      console.log(password);
+      let confirm_password = document.getElementById("confirm_password").value
+      console.log(confirm_password);
+
+      // console.log(JSON.stringify(data));
+
+      fetch('http://127.0.0.1:5000/api/v1/auth/signup', {
+        method: "POST",
+        headers: {
+          "Accept": "application/json, text/plain",
+          "content-type": "json/application"
+        },
+        body: JSON.stringify({
+          email: email, username: username,
+          password: password, confirm_password: confirm_password
+        })
+      })
+        // console.log("Check data")
+        .catch(console.error)
+        .then((res) => res.json())
+        .then((data) => console.log(data));
+    })
+
+  </script>
+
 </body>
 
 </html>

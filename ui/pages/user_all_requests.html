@@ -47,14 +47,14 @@
             </svg>
           </span>All requests</a>
 
-          <div class="dropdown nav--link">
-            <a class="nav--link flex" href="user_all_requests.html">
-              <span>
-                <svg class="nav--icon">
-                  <use xlink:href="../icons/sprite.svg#icon-account_circle"></use>
-                </svg>
-              </span>Username</a>
-            
+        <div class="dropdown nav--link">
+          <a class="nav--link flex" href="user_all_requests.html">
+            <span>
+              <svg class="nav--icon">
+                <use xlink:href="../icons/sprite.svg#icon-account_circle"></use>
+              </svg>
+            </span>Username</a>
+
           <div class="dropdown--links card">
             <a class="nav--link" href="signin.html">Sign Out</a>
           </div>
@@ -199,6 +199,17 @@
 
   </div>
   <!-- End of .container -->
+
+
+  <script>
+    fetch('http://127.0.0.1:5000/api/v1/users/requests', {
+      headers: {
+        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiYWNjZXNzIiwiaWRlbnRpdHkiOjUsImZyZXNoIjpmYWxzZSwibmJmIjoxNTI5NDEzMDY2LCJqdGkiOiI4NGYzY2U0MS00NmNkLTRlYjUtYjM3Zi1kNDlmODg1ODY4MmQiLCJpYXQiOjE1Mjk0MTMwNjYsImV4cCI6MTUyOTQxMzk2Nn0.636VQal_zXXMLpc8pUzlz5xsllYYN-_JGksMeALxmlg"
+      }
+    })
+      .then(res => res.json())
+      .then(data => console.log(data));
+  </script>
 
 </body>
 

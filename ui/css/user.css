@@ -28,6 +28,7 @@ header {
 
 .content {
   flex-direction: column;
+  width: 80%;
 }
 
 .content--request {
@@ -53,11 +54,6 @@ header {
   font-size: 1.8rem;
   margin: 1rem 0;
 }
-
-/* .form--item{
-  display: flex;
-  
-} */
 
 .form--item > div {
   margin: 0.5rem 1rem;
@@ -107,9 +103,8 @@ textarea .input--text {
   color: var(--text-color);
 }
 
-.content--request .submit--button{
+.content--request .submit--button {
   background-color: var(--primary-color);
-
 }
 
 .pagination .nav--icon-primary {
@@ -124,4 +119,3 @@ textarea .input--text {
   padding-left: 1rem;
   padding-top: 1.8rem;
 }
-

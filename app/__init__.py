@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request, render_template
 from psycopg2.extras import RealDictCursor
+from flask_cors import CORS
 from .model import *
 import os
 import re
@@ -10,6 +11,7 @@ from flask_jwt_extended import (
 from config import config
 
 app = Flask(__name__)
+CORS(app)
 RUN_MODE = os.getenv('APP_SETTINGS') if os.getenv(
     'APP_SETTINGS') else 'development'
 app.config.from_object(config[RUN_MODE])
@@ -27,7 +29,7 @@ def index():
 def create_user():
     # Ensure input is in json format
     if not request.is_json:
-        return jsonify({"message": "Missing JSON in request"}), 400
+        return jsonify({"message": "Wrong Format, expecting JSON string"}), 400
     for key in request.json:
         # Ensure key is valid
         if key is None:
@@ -69,7 +71,7 @@ def create_user():
 def signin_user():
     # Ensure input is in json format
     if not request.is_json:
-        return jsonify({"message": "Missing JSON in request"}), 400
+        return jsonify({"message": "Wrong Format, expecting JSON string"}), 400
     for key in request.json:
         # Ensure key is not empty
         if key == "":
@@ -99,7 +101,7 @@ def create_request():
     user_id = get_jwt_identity()
     # Ensure input is in json format
     if not request.is_json:
-        return jsonify({"message": "Missing JSON in request"}), 400
+        return jsonify({"message": "Wrong Format, expecting JSON string"}), 400
     for key in request.json:
         # Ensure key is not empty
         if key == "":
@@ -167,7 +169,7 @@ def user_update_request(request_id):
 
     # Ensure input is in json format
     if not request.is_json:
-        return jsonify({"message": "Missing JSON in request"}), 400
+        return jsonify({"message": "Wrong Format, expecting JSON string"}), 400
     for key in request.json:
         # Ensure key is not empty
         if key == "":
